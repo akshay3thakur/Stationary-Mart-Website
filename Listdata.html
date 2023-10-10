@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Product List</title>
+</head>
+<body style="background-image: url('store.jpg'); background-size: cover;">
+
+    <div class="container mt-5">
+        <h1>Product List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th> 
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        
+        const products = [
+    { ID: "AC-001", Product: "AC-Pen", Quantity: 7 },
+    { ID: "AC-002", Product: "AC-Pencil", Quantity: 3 },
+    { ID: "AC-003", Product: "AC-Notebook", Quantity: 5 },
+    { ID: "AC-004", Product: "AC-Backpack", Quantity: 8 },
+    { ID: "AC-005", Product: "AC-Water Bottle", Quantity: 2 },
+    { ID: "AC-006", Product: "AC-Desk Chair", Quantity: 6 },
+    { ID: "AC-007", Product: "AC-Desk Lamp", Quantity: 4 },
+    { ID: "AC-008", Product: "AC-Headphones", Quantity: 9 },
+    { ID: "AC-009", Product: "AC-Mouse", Quantity: 1 },
+    { ID: "AC-010", Product: "AC-Keyboard", Quantity: 10 },
+    { ID: "AC-011", Product: "AC-Monitor", Quantity: 7 },
+    { ID: "AC-012", Product: "AC-USB Drive", Quantity: 3 },
+    { ID: "AC-013", Product: "AC-External Hard Drive", Quantity: 5 },
+    { ID: "AC-014", Product: "AC-Phone Charger", Quantity: 8 },
+    { ID: "AC-015", Product: "AC-Tablet", Quantity: 2 },
+    { ID: "AC-016", Product: "AC-Smartphone", Quantity: 6 },
+    { ID: "AC-017", Product: "AC-Headset", Quantity: 4 },
+    { ID: "AC-018", Product: "AC-Desk Organizer", Quantity: 9 },
+    { ID: "AC-019", Product: "AC-File Cabinet", Quantity: 1 },
+    { ID: "AC-020", Product: "AC-Bookshelf", Quantity: 10 },
+    { ID: "AC-021", Product: "AC-Desk", Quantity: 7 },
+    { ID: "AC-022", Product: "AC-Printer", Quantity: 3 },
+    { ID: "AC-023", Product: "AC-Scanner", Quantity: 5 },
+    { ID: "AC-024", Product: "AC-Monitor Stand", Quantity: 8 },
+    { ID: "AC-025", Product: "AC-Desk Mat", Quantity: 2 },
+    { ID: "AC-026", Product: "AC-Stapler", Quantity: 6 },
+    { ID: "AC-027", Product: "AC-Paper Clips", Quantity: 4 },
+    { ID: "AC-028", Product: "AC-Notebook Stand", Quantity: 9 },
+    { ID: "AC-029", Product: "AC-Whiteboard", Quantity: 1 },
+    { ID: "AC-030", Product: "AC-File Folders", Quantity: 10 }
+];
+
+        // Trying, Function to populate the table with product data
+        function populateTable() {
+            const tbody = document.querySelector("tbody");
+
+            products.forEach((product) => {
+                const row = document.createElement("tr");
+                const idCell = document.createElement("td");
+                idCell.textContent = product.ID;
+                const nameCell = document.createElement("td");
+                nameCell.textContent = product.Product;
+                const quantityCell = document.createElement("td"); // Added quantity cell
+                quantityCell.textContent = product.Quantity; // Added quantity value
+
+                row.appendChild(idCell);
+                row.appendChild(nameCell);
+                row.appendChild(quantityCell); // Appended quantity cell
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Call the function to populate the table
+        populateTable();
+    </script>
+</body>
+</html>

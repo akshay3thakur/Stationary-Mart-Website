@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+        #instructions {
+            float: left;
+            width: 60%;
+            font-size: 20px; 
+        }
+
+        #instructions h2 {
+            font-size: 40px; 
+            font-weight: bold;
+            color: #000000;
+            padding-left: 12px;
+        }
+
+        #instructions ul {
+            list-style-type: disc;
+            padding-left: 30px;
+            margin-top: 10px;
+        }
+
+        #instructions li {
+            font-weight: bold;
+            color: #0047AB;
+        }
+    </style>
+    <title>Dashboard</title>
+</head>
+<body style="background-image: url('ACbackground.jpg'); background-size: cover;">
+
+    <div id="enterdetails">
+        <h1>Enter details</h1>
+        <button id="viewList" type="button" class="btn btn-primary btn-lg data">View Products</button>
+
+
+<script>
+    const viewListButton = document.querySelector("#viewList");
+
+    viewListButton.addEventListener("click", () => {
+    window.location.href = "Listdata.html"; 
+});
+</script>
+        <h4>Product ID (starts with AC-)</h4>
+        <input id="enterID" type="text" class="input-field">
+
+        <h4>Product Name (starts with AC-)</h4> 
+        <input id="enterName" type="text" class="input-field">
+
+        <h4>Cost</h4>
+        <input id="enterPrice" type="text" class="input-field">
+
+        <h4>Brand</h4>
+        <input id="enterBrand" type="text" class="input-field"> <br><br>
+
+        <h4>Quantity</h4>
+        <input id="enterQuant" type="text" class="input-field"> <br><br>
+
+        <button id="insert" type="button" class="btn btn-primary btn-lg data">Add</button>
+        <button id="update" type="button" class="btn btn-primary btn-lg data">Update</button>
+        <button id="remove" type="button" class="btn btn-primary btn-lg data">Remove</button>
+    </div>
+
+    <div id='finddetails'>
+        <h1>Find by ID</h1>
+        <input id="findID" type="text" class="input-field"> <br><br>
+        <button type="button" id="find" class="btn btn-primary btn-lg data"><i class="fas fa-search"></i> Search
+        </button>
+
+        <div id="opt">
+            <h3 id="findName" class="output" id="op1"></h3>
+            <h3 id="findCost" class="output" id="op2"></h3>
+            <h3 id="findBrand" class="output" id="op3"></h3>
+            <h3 id="findQuant" class="output" id="op4"></h3>
+        </div>
+    </div>
+
+    <div id="instructions">
+        <h2>Instructions:</h2>
+        <ul>
+            <li>Product ID should start with "AC-" and contain only numbers.</li>
+            <li>Product Name should start with "AC-".</li>
+            <li>Sample Product Names: AC-Pen, AC-Pencil, etc.</li>
+        </ul>
+    </div>
+
+    <script type="module">
+        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDiSx7Ea1lIICivIBOk5o7oHbI92a-3yss",
+            authDomain: "ac-fproject.firebaseapp.com",
+            projectId: "ac-fproject",
+            storageBucket: "ac-fproject.appspot.com",
+            messagingSenderId: "741349847354",
+            appId: "1:741349847354:web:b73e43c8f40d7dd47da003",
+            measurementId: "G-MCKTMG8V79"
+        };
+      
+        
+        const app = initializeApp(firebaseConfig);
+
+        import { getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
+
+        const db = getDatabase();
+
+        var enterID = document.querySelector("#enterID");
+        var enterName = document.querySelector("#enterName");
+        var enterPrice = document.querySelector("#enterPrice");
+        var enterBrand = document.querySelector("#enterBrand");
+        var enterQuant = document.querySelector("#enterQuant");
+        
+        var findID = document.querySelector("#findID");
+        var findName = document.querySelector("#findName");
+        var findCost = document.querySelector("#findCost");
+        var findBrand = document.querySelector("#findBrand");
+        var findQuant = document.querySelector("#findQuant");
+
+        var insertBtn = document.querySelector("#insert");
+        var updateBtn = document.querySelector("#update");
+        var removeBtn = document.querySelector("#remove");
+        var findBtn = document.querySelector("#find");
+        function isValidProductID(productID) {
+    const productIDPattern = /^AC-\d{3}$/; // Rule - AC- followed by exactly 3 digits
+    return productIDPattern.test(productID);
+}
+
+// Function to validate product name format
+function isValidProductName(productName) {
+    const productNamePattern = /^AC-.+$/; // Rule - AC- followed by one or more characters
+    return productNamePattern.test(productName);
+}
+
+        function InsertData() {
+    const enteredID = enterID.value.trim();
+    const enteredName = enterName.value.trim();
+
+    if (!isValidProductID(enteredID)) {
+        alert("Product ID should start with 'AC-' followed by exactly 3 digits.");
+        return;
+    }
+
+    if (!isValidProductName(enteredName)) {
+        alert("Product Name should start with 'AC-'.");
+        return;
+    }
+
+
+    set(ref(db, "Shop/" + enteredID), {
+        ID: enteredID,
+        Product: enteredName,
+        Cost: enterPrice.value,
+        Brand: enterBrand.value,
+        Quantity: enterQuant.value
+    })
+    .then(() => {
+        alert("Data added successfully!");
+    })
+    .catch((error) => {
+        alert(error);
+    });
+}
+
+        function FindData(){
+            const dbref = ref(db);
+
+            get(child(dbref, "Shop/" + findID.value))
+            .then((snapshot) =>{
+                if(snapshot.exists()){
+                    findName.innerHTML = "Product: " + snapshot.val().Product;
+                    findCost.innerHTML = "Cost: " + snapshot.val().Cost;
+                    findBrand.innerHTML = "Brand: " + snapshot.val().Brand;
+                    findQuant.innerHTML = "Quantity available: " + snapshot.val().Quantity;
+                }
+                else{
+                    alert("No data found!");
+                }
+            })
+            .catch((error) => {
+                alert(error); 
+            })
+        }
+
+        function UpdateData(){
+            update(ref(db, "Shop/" + enterID.value), {
+                Product: enterName.value,
+                Cost: enterPrice.value,
+                Brand: enterBrand.value,
+                Quantity: enterQuant.value,
+            })
+            .then(() => {
+                alert("Data updated successfully!");
+            })
+            .catch((error) => {
+                alert(error);
+            })
+        }
+
+        function RemoveData(){
+            remove(ref(db, "Shop/" + enterID.value))
+            .then(() => {
+                alert("Data removed successfully!");
+            })
+            .catch((error) => {
+                alert(error);
+            }) 
+        }
+
+        insertBtn.addEventListener("click", InsertData);
+        findBtn.addEventListener("click", FindData);
+        updateBtn.addEventListener("click", UpdateData);
+        removeBtn.addEventListener("click", RemoveData);
+
+    </script>
+</body>
+</html>
