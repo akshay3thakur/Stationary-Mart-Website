@@ -106,9 +106,10 @@
             messagingSenderId: "741349847354",
             appId: "1:741349847354:web:b73e43c8f40d7dd47da003",
             measurementId: "G-MCKTMG8V79"
+            databaseURL: "https://ac-fproject-default-rtdb.firebaseio.com/"
         };
       
-        
+        const websiteDatabaseRef = firebase.database().ref('Shop/products');
         const app = initializeApp(firebaseConfig);
 
         import { getDatabase, set, get, update, remove, ref, child } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-database.js";
