@@ -173,25 +173,51 @@ function isValidProductName(productName) {
     });
 }
 
-        function FindData(){
-            const dbref = ref(db);
+        // function FindData(){
+        //     const dbref = ref(db);
 
-            get(child(dbref, "Shop/" + findID.value))
-            .then((snapshot) =>{
-                if(snapshot.exists()){
-                    findName.innerHTML = "Product: " + snapshot.val().Product;
-                    findCost.innerHTML = "Cost: " + snapshot.val().Cost;
-                    findBrand.innerHTML = "Brand: " + snapshot.val().Brand;
-                    findQuant.innerHTML = "Quantity available: " + snapshot.val().Quantity;
-                }
-                else{
-                    alert("No data found!");
-                }
-            })
-            .catch((error) => {
-                alert(error); 
-            })
+        //     get(child(dbref, "Shop/" + findID.value))
+        //     .then((snapshot) =>{
+        //         if(snapshot.exists()){
+        //             findName.innerHTML = "Product: " + snapshot.val().Product;
+        //             findCost.innerHTML = "Cost: " + snapshot.val().Cost;
+        //             findBrand.innerHTML = "Brand: " + snapshot.val().Brand;
+        //             findQuant.innerHTML = "Quantity available: " + snapshot.val().Quantity;
+        //         }
+        //         else{
+        //             alert("No data found!");
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         alert(error); 
+        //     })
+        // }
+        function FindData(){
+    const dbref = ref(db);
+
+    const productId = findID.value;
+
+    if (!isValidProductID(productId)) {
+        alert("Invalid Product ID format.");
+        return;
+    }
+
+    get(child(dbref, "Shop/" + productId))
+    .then((snapshot) =>{
+        if (snapshot.exists()) {
+            findName.innerHTML = "Product: " + snapshot.val().Product;
+            findCost.innerHTML = "Cost: " + snapshot.val().Cost;
+            findBrand.innerHTML = "Brand: " + snapshot.val().Brand;
+            findQuant.innerHTML = "Quantity available: " + snapshot.val().Quantity;
+        } else {
+            alert("No data found for the product ID: " + productId);
         }
+    })
+    .catch((error) => {
+        alert("Error: " + error); 
+    });
+}
+
 
         function UpdateData(){
             update(ref(db, "Shop/" + enterID.value), {
