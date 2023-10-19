@@ -144,8 +144,11 @@ function isValidProductName(productName) {
 }
 
         function InsertData() {
-    const enteredID = enterID.value.trim();
-    const enteredName = enterName.value.trim();
+    // const enteredID = enterID.value.trim();
+    // const enteredName = enterName.value.trim();
+    const enteredID = document.querySelector("#enterID").value.trim();
+    const enteredName = document.querySelector("#enterName").value.trim();
+
 
     if (!isValidProductID(enteredID)) {
         alert("Product ID should start with 'AC-' followed by exactly 3 digits.");
@@ -192,10 +195,39 @@ function isValidProductName(productName) {
         //         alert(error); 
         //     })
         // }
-        function FindData(){
-    const dbref = ref(db);
+//         function FindData(){
+//     const dbref = ref(db);
 
+//     const productId = findID.value;
+
+//     if (!isValidProductID(productId)) {
+//         alert("Invalid Product ID format.");
+//         return;
+//     }
+
+//     get(child(dbref, "Shop/" + productId))
+//     .then((snapshot) =>{
+//         if (snapshot.exists()) {
+//             findName.innerHTML = "Product: " + snapshot.val().Product;
+//             findCost.innerHTML = "Cost: " + snapshot.val().Cost;
+//             findBrand.innerHTML = "Brand: " + snapshot.val().Brand;
+//             findQuant.innerHTML = "Quantity available: " + snapshot.val().Quantity;
+//         } else {
+//             alert("No data found for the product ID: " + productId);
+//         }
+//     })
+//     .catch((error) => {
+//         alert("Error: " + error); 
+//     });
+// }
+function FindData() {
+    const dbref = ref(db);
     const productId = findID.value;
+
+    if (!productId) {
+        alert("Please enter a Product ID.");
+        return;
+    }
 
     if (!isValidProductID(productId)) {
         alert("Invalid Product ID format.");
@@ -203,20 +235,21 @@ function isValidProductName(productName) {
     }
 
     get(child(dbref, "Shop/" + productId))
-    .then((snapshot) =>{
-        if (snapshot.exists()) {
-            findName.innerHTML = "Product: " + snapshot.val().Product;
-            findCost.innerHTML = "Cost: " + snapshot.val().Cost;
-            findBrand.innerHTML = "Brand: " + snapshot.val().Brand;
-            findQuant.innerHTML = "Quantity available: " + snapshot.val().Quantity;
-        } else {
-            alert("No data found for the product ID: " + productId);
-        }
-    })
-    .catch((error) => {
-        alert("Error: " + error); 
-    });
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                findName.innerHTML = "Product: " + snapshot.val().Product;
+                findCost.innerHTML = "Cost: " + snapshot.val().Cost;
+                findBrand.innerHTML = "Brand: " + snapshot.val().Brand;
+                findQuant.innerHTML = "Quantity available: " + snapshot.val().Quantity;
+            } else {
+                alert("No data found for the product ID: " + productId);
+            }
+        })
+        .catch((error) => {
+            alert("Error: " + error);
+        });
 }
+
 
 
         function UpdateData(){
