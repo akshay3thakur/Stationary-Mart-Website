@@ -7,7 +7,14 @@
     
     <link rel="stylesheet" href="style.css">
     <style>
-        
+        .android-club-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: 200px;
+            z-index: 999; /* Adjust this value as needed */
+        }
         #instructions {
             float: left;
             width: 60%;
@@ -39,13 +46,11 @@
     <div id="enterdetails">
         <h1>Enter details</h1>
         <button id="viewList" type="button" class="btn btn-primary btn-lg data">View Products</button>
-
+        <button id="HelpCenter" type="button" class="btn btn-primary btn-lg data">Help Center</button>
 
 <script>
     const viewListButton = document.querySelector("#viewList");
-
-    viewListButton.addEventListener("click", () => {
-    window.location.href = "Listdata.html"; 
+    const HelpCenterButton = document.querySelector("#HelpCenter");
 });
 </script>
         <h4>Product ID (starts with AC-)</h4>
@@ -283,5 +288,6 @@ function FindData() {
         removeBtn.addEventListener("click", RemoveData);
 
     </script>
+    <img src="android_club_vitc_logo.jpeg" alt="Android Club Logo" class="android-club-logo">
 </body>
 </html>
