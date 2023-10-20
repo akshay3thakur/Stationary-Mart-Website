@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .answer {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .icon-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background-color: rgb(110, 110, 252);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .icon-button i {
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question">How do I add a new product?</div>
+        <div class="answer">You can add a new product from the "Insert" page. Fill in the required details and click the "Add" button. If you still fail to understand, contact the nearest mental hospital.</div>
+    
+        <!-- Add more question-container sections for other questions and answers -->
+    
+        <div class="question">How can I update product information?</div>
+        <div class="answer">To update a product, go to the "Insert" page and enter the product ID. Update the information and click the "Update" button. It's easy peasy.</div>
+    
+        <div class="question">How do I remove a product from the database?</div>
+        <div class="answer">You can remove a product by going to the "Insert" page, entering the product ID, and clicking the "Remove" button. This action is not reversible 😥😨.</div>
+    
+        <div class="question">How can I search for a specific product?</div>
+        <div class="answer">On the "Insert" page, enter the product ID in the "Find by ID" section and click the "Search" button. If you are lucky enough, the details will be displayed.</div>
+    
+        <div class="question">What if I forget the product ID?</div>
+        <div class="answer">Meditate 😌. If you forget the product ID, you can still view the list of all products on the "View Products" page. All available products and details are displayed there.</div>
+    
+        <div class="question">How do I contact support?</div>
+        <div class="answer">You can reach out to our support team via Tinder or, as a last resort, by email at androidclub@vit.ac.in or through other available options on the "Help Center" page.</div>
+    
+        <div class="question">What should I do if the app crashes or has issues?</div>
+        <div class="answer">If you encounter any issues or the app crashes, delete it and go to sleep.</div>
+    </div>
+    
+    
+    
+    <div class="button-container">
+        <div class="icon-button" id="whatsapp-button" onclick="openWhatsApp()">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <div class="icon-button" id="email-button" onclick="sendEmail()">
+            <i class="far fa-envelope"></i>
+        </div>
+        <div class="icon-button" id="instagram-button" onclick="openInstagram()">
+            <i class="fab fa-instagram"></i>
+        </div>
+        <div class="icon-button" id="linkedin-button" onclick="openLinkedIn()">
+            <i class="fab fa-linkedin"></i>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openWhatsApp() {
+        window.open('whatsapp://send?phone=9955582384&text=Hello Shivam Bhaiyya kaise ho app');
+    }
+
+    function sendEmail() {
+        window.open('mailto:androidclub@vit.ac.in?subject=[From%20App]%20Donot_remove_this_Subject_Line');
+    }
+
+    function openInstagram() {
+        window.open('https://www.instagram.com/androidvitc/');
+    }
+
+    function openLinkedIn() {
+        window.open('https://www.linkedin.com/company/android-club-vitc/mycompany/');
+    }
+</script>
+</body>
+</html>
+<style>
+    .container {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+
+    .question {
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .answer {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+</style>
